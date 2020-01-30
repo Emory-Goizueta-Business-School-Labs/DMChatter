@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using DMChatter.Data;
 
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Collections.Generic;
@@ -68,7 +67,7 @@ namespace DMChatter.Pages
 
                 var authProperties = new AuthenticationProperties
                 {
-                    //AllowRefresh = <bool>,
+                    AllowRefresh = true,
                     // Refreshing the authentication session should be allowed.
 
                     //ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
@@ -76,7 +75,7 @@ namespace DMChatter.Pages
                     // value set here overrides the ExpireTimeSpan option of 
                     // CookieAuthenticationOptions set with AddCookie.
 
-                    //IsPersistent = true,
+                    IsPersistent = false,
                     // Whether the authentication session is persisted across 
                     // multiple requests. When used with cookies, controls
                     // whether the cookie's lifetime is absolute (matching the
