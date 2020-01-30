@@ -11,4 +11,7 @@
   <ItemGroup>
     <Folder Include="Hubs\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="ScaffoldingReadme.txt" />
+  </ItemGroup>
 </Project>
