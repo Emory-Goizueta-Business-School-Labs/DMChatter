@@ -69,3 +69,85 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.chatApp {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 43em;
+  max-height: 20em;
+  overflow: hidden;
+  height: calc(100vh - 60px - 73px);
+}
+
+.chatApp-userList {
+  border: 0 none;
+  padding: 1em;
+  flex-grow: 0;
+  font-weight: bold;
+}
+
+.chatApp-userList option {
+  padding: 0.5em;
+}
+
+.chatApp-chats {
+  flex-grow: 1;
+  position:relative;
+}
+
+.chatApp-chat {
+  visibility: hidden;
+  padding: 1em;
+  flex-direction: column;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  display: flex;
+}
+
+.chatApp-chat.isActive {
+  visibility: visible;
+}
+
+.chat-messages {
+  list-style: none;
+  overflow: scroll;
+  margin: 0;
+  padding: 0 1em 0 0;
+  flex-grow: 1;
+}
+
+.chat-message {
+  max-width: 75%;
+  float: left;
+  clear: both;
+  margin: 0.5em 0;
+}
+
+.chat-message.isMine {
+  float: right;
+}
+
+.chat-composer {
+  width: 100%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  padding-right: 1em;
+  display: flex;
+  flex-direction: row;
+}
+
+.chat-composer input {
+  padding: 0;
+}
+
+.chat-composer input[type=text] {
+  flex-grow: 1;
+}
+
+.chat-composer input[type=submit] {
+  flex-grow: 0;
+}
