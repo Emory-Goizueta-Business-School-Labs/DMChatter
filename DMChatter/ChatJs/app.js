@@ -114,6 +114,7 @@ class App extends Component{
     }
 
     componentDidMount() {
+        return;
         this.connection = new signalR.HubConnectionBuilder().withUrl(this.props.hubUrl).build();
         this.connection.on("ReceiveMessage", this.onReceiveMessage);
         this.connection.on("Init", this.onInit);

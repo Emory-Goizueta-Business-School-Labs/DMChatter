@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Collections.Generic;
+using DMChatter.Hubs;
 
 namespace DMChatter.Pages
 {
@@ -52,6 +53,10 @@ namespace DMChatter.Pages
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
+
+            if (ChatHub.Users.Contains(Input.Name)) {
+                ModelState.AddModelError("Name", "Username already in use");
+            }
 
             if (ModelState.IsValid)
             {
