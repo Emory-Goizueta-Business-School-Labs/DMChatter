@@ -33,6 +33,7 @@ namespace DMChatter.Pages
         public class InputModel
         {
             [Required]
+            [Display(Name = "Username")]
             public string Name { get; set; }
         }
 
