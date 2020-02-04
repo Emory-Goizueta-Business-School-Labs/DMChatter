@@ -11,95 +11,7 @@ class App extends Component{
         this.state = {
             me: '',
             isConnected: false,
-            message: '',
-            chats: [{
-                user: "Gandalf",
-                messages: [
-                    {
-                        timestamp: 1,
-                        message: "You're late.",
-                        mine: true,
-                    },
-                    {
-                        timestamp: 2,
-                        message: "A wizard is never late, Frodo Baggins. Nor is he early. He arrives precisely when he means to.",
-                        mine: false,
-                    }
-                ],
-                isActive: true,
-            },
-            {
-                user: "Sam",
-                messages: [
-                    {
-                        timestamp: 1,
-                        message: "Go back, Sam. I'm going to Mordor alone.",
-                        mine: true,
-                    },
-                    {
-                        timestamp: 2,
-                        message: "Of course you are. And I'm coming with you.",
-                        mine: false,
-                    }
-                ],
-            },
-            {
-                user: "Strider",
-                messages: [
-                    {
-                        timestamp: 1,
-                        message: "You draw far too much attention to yourself, Mr. \"Underhill.\"",
-                        mine: false,
-                    },
-                    {
-                        timestamp: 2,
-                        message: "What do you want?",
-                        mine: true,
-                    },
-                    {
-                        
-                        timestamp: 3,
-                        message: "More caution from you. That is no mere trinket you carry.",
-                        mine: false,
-                    },
-                    {
-                        
-                        timestamp: 4,
-                        message: "I carry nothing.",
-                        mine: true,
-                    },
-                    {
-                        
-                        timestamp: 5,
-                        message: "Indeed. I can avoid being seen if I wish, but to disappear entirely; that is a rare gift.",
-                        mine: false,
-                    },
-                    {
-                        
-                        timestamp: 6,
-                        message: "Who are you?",
-                        mine: true,
-                    },
-                    {
-                        
-                        timestamp: 7,
-                        message: "Are you frightened?",
-                        mine: false,
-                    },
-                    {
-                        
-                        timestamp: 8,
-                        message: "Yes.",
-                        mine: true,
-                    },
-                    {
-                        
-                        timestamp: 9,
-                        message: "Not nearly frightened enough. I know what hunts you.",
-                        mine: false,
-                    },
-                ],
-            }]
+            chats: []
         };
 
         this.onSendButtonClick = this.onSendButtonClick.bind(this);
@@ -114,7 +26,6 @@ class App extends Component{
     }
 
     componentDidMount() {
-        return;
         this.connection = new signalR.HubConnectionBuilder().withUrl(this.props.hubUrl).build();
         this.connection.on("ReceiveMessage", this.onReceiveMessage);
         this.connection.on("Init", this.onInit);
