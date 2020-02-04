@@ -81,14 +81,26 @@ body {
 }
 
 .chatApp-userList {
-  border: 0 none;
   padding: 1em;
   flex-grow: 0;
+}
+
+.chatApp-userList button {
+  padding: 0.5em;
+  border: 0 none;
+  background: transparent;
+}
+
+.chatApp-userList .isActive {
+  background: silver;
+}
+
+.chatApp-userList .hasUnreadMessages {
   font-weight: bold;
 }
 
-.chatApp-userList option {
-  padding: 0.5em;
+.chatApp-userList .hasUnreadMessages::after {
+  content: '*';
 }
 
 .chatApp-chats {

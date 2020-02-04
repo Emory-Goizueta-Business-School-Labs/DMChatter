@@ -5,6 +5,12 @@ class Chat extends Component{
         super(props);
 
         this.messageRef = React.createRef();
+        this.state = {
+            message: '',
+        };
+
+        this.handleMessageChange = this.handleMessageChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     onComponentMount() {
@@ -13,6 +19,24 @@ class Chat extends Component{
 
     scrollToBottom() {
         this.messageRef.scrollTop = this.messageRef.scrollHeight - this.messageRef.clientHeight;
+    }
+
+    handleSubmit(e) {
+        if (!!this.props.sendMessage) {
+            this.props.sendMessage(this.props.user, this.state.message);
+
+            this.setState({
+                message: '',
+            });
+        }
+        
+        e.preventDefault();
+    }
+
+    handleMessageChange(e) {
+        this.setState({
+            message: e.target.value,
+        });
     }
 
     render(){
@@ -24,8 +48,8 @@ class Chat extends Component{
                         return (<li key={m.timestamp} className={"chat-message" + (m.mine ? " isMine" : "")}>{m.message}</li>);
                     })}
                 </ol>
-                <form className="chat-composer">
-                    <input type="text" />
+                <form className="chat-composer" onSubmit={this.handleSubmit}>
+                    <input type="text" value={this.state.message} onChange={this.handleMessageChange} />
                     <input type="submit" value="Send" />
                 </form>
             </div>

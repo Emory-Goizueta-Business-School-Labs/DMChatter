@@ -4,20 +4,32 @@ class UserList extends Component{
     constructor(props) {
         super(props);
 
-        this.onChange = this.onChange.bind(this);
+        this.onClick = this.onClick.bind(this);
     }
-    
+
     onChange(e) {
+        this.props.onSelect(e);
+    }
+
+    onClick(e) {
         this.props.onSelect(e);
     }
 
     render(){
         return(
-            <select className="chatApp-userList"  size={this.props.users.length} onChange={this.onChange} value={this.props.selectedUser}>
-                { this.props.users.map(u => {
-                    return(<option key={u} value={u}>{u}</option>);
+            <div className="chatApp-userList">
+                { this.props.chats.map(c => {
+                    let classes = '';
+                    if (c.isActive) {
+                        classes += ' isActive';
+                    }
+
+                    if (c.hasUnreadMessages) {
+                        classes += ' hasUnreadMessages';
+                    }
+                    return(<button className={classes} key={c.user} value={c.user} onClick={this.onClick}>{c.user}</button>);
                 })}
-            </select>
+            </div>
         );
     }
 }

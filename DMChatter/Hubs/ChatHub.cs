@@ -13,7 +13,7 @@ namespace DMChatter.Hubs
         public async override Task OnConnectedAsync()
         {
             Users.Add(Context.UserIdentifier);
-            await Clients.User(Context.UserIdentifier).SendAsync("ReceiveRoster", Users);
+            await Clients.User(Context.UserIdentifier).SendAsync("Init", Context.UserIdentifier, Users);
             await Clients.AllExcept(Context.UserIdentifier).SendAsync("UserConnected", Context.UserIdentifier);
             await base.OnConnectedAsync();
             return;
@@ -31,7 +31,7 @@ namespace DMChatter.Hubs
         {
             long timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
             await Clients.User(targetUser).SendAsync("ReceiveMessage", timestamp, Context.UserIdentifier, message);
-            await Clients.User(Context.UserIdentifier).SendAsync("MessageReceipt", timestamp, targetUser, message);
+            await Clients.User(Context.UserIdentifier).SendAsync("SendReceipt", timestamp, targetUser, message);
         }
     }
 }
